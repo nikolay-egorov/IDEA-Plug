@@ -1,4 +1,4 @@
-package editor;
+package editor.core;
 
 import com.intellij.ide.FileEditorProvider;
 import com.intellij.openapi.fileEditor.FileEditor;
@@ -26,5 +26,5 @@ public class CustomFileProvider implements FileEditorProvider {
         return null;
     }
 
- 
+
 }

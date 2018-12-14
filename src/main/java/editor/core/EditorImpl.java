@@ -1,11 +1,12 @@
-package editor;
+package editor.core;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
+import editor.EditorInterface;
 
 import javax.swing.*;
 
-public class EditorImpl implements EditorInterface{
+public class EditorImpl implements EditorInterface {
 
     private VirtualFile file;
     private Project project;
