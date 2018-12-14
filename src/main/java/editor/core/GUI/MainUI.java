@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
+import com.intellij.util.ui.UIUtil;
 
 public class MainUI extends JPanel{
     private EditorInterface editor;
@@ -26,7 +27,7 @@ public class MainUI extends JPanel{
     private final JLabel sliderLabel;
     private final JPanel scalePanel;
     private final JButton refreshDiagramButton;
-
+    private final Color color;
 
     private double scale = 1.5;
 
@@ -38,20 +39,26 @@ public class MainUI extends JPanel{
     public MainUI(EditorInterfaceImpl yumlmeEditor) {
         this.editor = yumlmeEditor;
         this.setLayout(new BorderLayout());
-        this.setBackground(Color.WHITE);
+        if(UIUtil.isUnderDarcula())
+            color=Color.DARK_GRAY;
+        else color=Color.WHITE;
+
+        this.setBackground(color);
+
+
 
         contentPanel = new JPanel(new BorderLayout());
         imagePanel = new JPanel(new BorderLayout());
 
         contentPanel.setBorder(new LineBorder(Color.LIGHT_GRAY, 2));
-        contentPanel.setBackground(Color.WHITE);
+        contentPanel.setBackground(color);
 
         imageLabel = new JLabel("");
         imagePanel.add(imageLabel, BorderLayout.CENTER);
         contentPanel.add(imageLabel, BorderLayout.CENTER);
 
         scalePanel = new JPanel(new BorderLayout());
-        scalePanel.setBackground(Color.WHITE);
+        scalePanel.setBackground(color);
 
         slider = new JSlider(JSlider.HORIZONTAL, 1, SCALE_MAX, ACTUAL_SCALE);
         slider.addChangeListener(new ChangeListener() {
@@ -65,7 +72,7 @@ public class MainUI extends JPanel{
         sliderLabel = new JLabel("Diagram scale", SwingConstants.CENTER);
 
         refreshDiagramButton = new JButton();
-        refreshDiagramButton.setBackground(Color.WHITE);
+        refreshDiagramButton.setBackground(color);
 
 
         refreshDiagramButton.addActionListener(new ActionListener() {

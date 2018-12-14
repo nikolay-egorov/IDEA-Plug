@@ -40,7 +40,7 @@ public class DiagramFileImpl implements FileEditor {
         return null;
     }
 
-   
+
     @Override
     public String getName() {
         return null;
