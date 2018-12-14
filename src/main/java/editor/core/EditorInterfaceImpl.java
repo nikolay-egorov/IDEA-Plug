@@ -2,15 +2,21 @@ package editor.core;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
-import editor.EditorInterface;
 
 import javax.swing.*;
 
-public class EditorImpl implements EditorInterface {
+public class EditorInterfaceImpl implements EditorInterface {
 
     private VirtualFile file;
     private Project project;
     private  boolean isDisposed;
+
+    public EditorInterfaceImpl(Project project, VirtualFile file) {
+        this.file = file;
+        this.project = project;
+
+        //UI?
+    }
 
     @Override
     public Project getProject() {
