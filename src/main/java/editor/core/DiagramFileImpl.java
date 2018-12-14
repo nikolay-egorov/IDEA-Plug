@@ -28,22 +28,22 @@ public class DiagramFileImpl implements FileEditor {
     }
 
 
-
+    @NotNull
     @Override
     public JComponent getComponent() {
-        return null;
+        return yumlmeEditor.getJComponent();
     }
 
     @Nullable
     @Override
     public JComponent getPreferredFocusedComponent() {
-        return null;
+        return yumlmeEditor.getContentComponent();
     }
 
-
+    @NotNull
     @Override
     public String getName() {
-        return null;
+        return NAME;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class DiagramFileImpl implements FileEditor {
 
     @Override
     public boolean isValid() {
-        return false;
+        return true;
     }
 
     @Override
@@ -73,12 +73,12 @@ public class DiagramFileImpl implements FileEditor {
 
     @Override
     public void addPropertyChangeListener(@NotNull PropertyChangeListener listener) {
-
+        myDispatcher.addListener(listener);
     }
 
     @Override
     public void removePropertyChangeListener(@NotNull PropertyChangeListener listener) {
-
+        myDispatcher.removeListener(listener);
     }
 
     @Nullable

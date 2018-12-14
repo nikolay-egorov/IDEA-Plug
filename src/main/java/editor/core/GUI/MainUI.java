@@ -1,10 +1,8 @@
 package editor.core.GUI;
 
-import com.intellij.ui.components.JBScrollPane;
 import editor.core.EditorInterfaceImpl;
 import editor.core.EditorInterface;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
@@ -12,21 +10,21 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
 import com.intellij.util.ui.UIUtil;
 
 public class MainUI extends JPanel{
     private EditorInterface editor;
 
-    private final JPanel contentPanel;
     private final JPanel imagePanel;
+    private final JPanel contentPanel;
     private final JLabel imageLabel;
     private final JSlider slider;
     private final JLabel sliderLabel;
     private final JPanel scalePanel;
     private final JButton refreshDiagramButton;
+
+
     private final Color color;
 
     private double scale = 1.5;
@@ -35,6 +33,8 @@ public class MainUI extends JPanel{
 
     public final int SCALE_MAX = 100;
     public int ACTUAL_SCALE = 50;
+    private JPanel panel1;
+    private JSlider slider1;
 
     public MainUI(EditorInterfaceImpl yumlmeEditor) {
         this.editor = yumlmeEditor;
@@ -47,15 +47,15 @@ public class MainUI extends JPanel{
 
 
 
-        contentPanel = new JPanel(new BorderLayout());
         imagePanel = new JPanel(new BorderLayout());
+        contentPanel = new JPanel(new BorderLayout());
 
-        contentPanel.setBorder(new LineBorder(Color.LIGHT_GRAY, 2));
-        contentPanel.setBackground(color);
+        imagePanel.setBorder(new LineBorder(Color.LIGHT_GRAY, 2));
+        imagePanel.setBackground(color);
 
         imageLabel = new JLabel("");
         imagePanel.add(imageLabel, BorderLayout.CENTER);
-        contentPanel.add(imageLabel, BorderLayout.CENTER);
+        imagePanel.add(imageLabel, BorderLayout.CENTER);
 
         scalePanel = new JPanel(new BorderLayout());
         scalePanel.setBackground(color);
