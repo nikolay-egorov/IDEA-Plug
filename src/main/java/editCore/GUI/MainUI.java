@@ -2,9 +2,11 @@ package editCore.GUI;
 
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.fileEditor.FileDocumentManager;
+import com.intellij.ui.components.JBScrollPane;
 import editCore.EditorInterfaceImpl;
 import editCore.EditorInterface;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
@@ -28,6 +30,7 @@ public class MainUI extends JPanel{
     private  JLabel sliderLabel;
     private  JPanel scalePanel;
     private  JButton refreshDiagramButton;
+    private final JScrollPane scrollPane;
 
 
     private final Color color;
@@ -41,24 +44,26 @@ public class MainUI extends JPanel{
 
     public MainUI(EditorInterfaceImpl yumlmeEditor) {
         this.editor = yumlmeEditor;
-        this.setLayout(new BorderLayout());
+//        this.setLayout(new BorderLayout());
         if(UIUtil.isUnderDarcula())
             color=Color.DARK_GRAY;
         else color=Color.WHITE;
 
         this.setBackground(color);
 
+        this.editor = yumlmeEditor;
+        this.setLayout(new BorderLayout());
+        this.setBackground(color);
 
-
-        imagePanel = new JPanel(new BorderLayout());
         contentPanel = new JPanel(new BorderLayout());
+        imagePanel = new JPanel(new BorderLayout());
 
-        imagePanel.setBorder(new LineBorder(Color.LIGHT_GRAY, 2));
-        imagePanel.setBackground(color);
+        contentPanel.setBorder(new LineBorder(Color.LIGHT_GRAY, 2));
+        contentPanel.setBackground(color);
 
-
-        imagePanel.add(imageLabel );
-        imagePanel.add(imageLabel );
+        imageLabel = new JLabel("");
+        imagePanel.add(imageLabel, BorderLayout.CENTER);
+        contentPanel.add(imageLabel, BorderLayout.CENTER);
 
         scalePanel = new JPanel(new BorderLayout());
         scalePanel.setBackground(color);
@@ -71,39 +76,29 @@ public class MainUI extends JPanel{
             }
         });
 
+        sliderLabel = new JLabel("Diagram scale", SwingConstants.CENTER);
 
-  //      sliderLabel = new JLabel("Diagram scale", SwingConstants.CENTER);
-
-    //    refreshDiagramButton = new JButton();
+        refreshDiagramButton = new JButton();
         refreshDiagramButton.setBackground(color);
-
-
-        refreshDiagramButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-
-            }
-        });
-
-        this.add(scalePanel, BorderLayout.BEFORE_FIRST_LINE);
+        try {
+            Image img = ImageIO
+                    .read(getClass().getResource("  refresh.png"));
+            refreshDiagramButton.setIcon(new ImageIcon(img));
+        } catch (Exception ex) {
+            refreshDiagramButton.setText("Refresh");
+        }
 
 
 
-        diagram = loadDiagram();
-        updScale();
-
-
-
-/*        scalePanel.add(refreshDiagramButton, BorderLayout.WEST);
+        scalePanel.add(refreshDiagramButton, BorderLayout.WEST);
         scalePanel.add(sliderLabel, BorderLayout.CENTER);
         scalePanel.add(slider, BorderLayout.AFTER_LAST_LINE);
-        this.add(scalePanel, BorderLayout.BEFORE_FIRST_LINE);*/
+        this.add(scalePanel, BorderLayout.BEFORE_FIRST_LINE);
 
-
-
-
-
+        scrollPane = new JBScrollPane(contentPanel);
+        this.add(scrollPane);
+        diagram = loadDiagram();
+        updScale();
 
 
     }
