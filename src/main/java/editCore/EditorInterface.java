@@ -1,4 +1,4 @@
-package editor.core;
+package editCore;
 
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.project.Project;

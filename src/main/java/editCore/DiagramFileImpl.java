@@ -1,4 +1,4 @@
-package editor.core;
+package editCore;
 
 import com.intellij.codeHighlighting.BackgroundEditorHighlighter;
 import com.intellij.openapi.fileEditor.FileEditor;
